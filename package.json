@@ -5,6 +5,7 @@
   "author": "Timothy Zemp",
   "private": true,
   "scripts": {
+    "test" : "nuxt",
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
