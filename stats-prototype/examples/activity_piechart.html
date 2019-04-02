@@ -1,0 +1,57 @@
+<html>
+<head>
+  <script src="../dist/jquery.js"></script>
+  <script src="../dist/highcharts.js"></script>
+</head>
+
+<body>
+<div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+
+
+<script type="text/javascript">
+
+  // Build the chart
+  Highcharts.chart('container', {
+    chart: {
+      plotBackgroundColor: null,
+      plotBorderWidth: null,
+      plotShadow: false,
+      type: 'pie'
+    },
+    title: {
+      text: 'Activities'
+    },
+    tooltip: {
+      pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    plotOptions: {
+      pie: {
+        allowPointSelect: true,
+        cursor: 'pointer',
+        dataLabels: {
+          enabled: false
+        },
+        showInLegend: true
+      }
+    },
+    series: [{
+      name: 'Activities',
+      colorByPoint: true,
+      data: [{
+        name: 'Reading',
+        y: 33.41,
+      }, {
+        name: 'Writing',
+        y: 23.84
+      }, {
+        name: 'Testing',
+        y: 10.85
+      }, {
+        name: 'Debugging',
+        y: 4.67
+      }]
+    }]
+  });
+</script>
+</body>
+</html>

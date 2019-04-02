@@ -1,0 +1,75 @@
+<html>
+<head>
+  <script src="../dist/jquery.js"></script>
+  <script src="../dist/highcharts.js"></script>
+</head>
+
+<body>
+<div id="container" style="min-width: 310px; width: 700px; height: 400px; margin: 0 auto"></div>
+
+<script type="text/javascript">
+
+
+  Highcharts.chart('container', {
+
+    title: {
+      text: 'Activities last week'
+    },
+
+    xAxis: {
+      categories: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturnday', 'Sunday', 'Monday', 'Tuesday'],
+      tickmarkPlacement: 'on',
+      title: {
+        enabled: false
+      },
+    },
+    yAxis: {
+      title: {
+        text: 'Hours'
+      },
+      labels: {
+        formatter: function () {
+          return this.value;
+        }
+      },
+      max: 10,
+    },
+    legend: {
+      layout: 'horizontal',
+      align: 'center',
+      verticalAlign: 'bottom'
+    },
+
+    series: [{
+      name: 'Reading',
+      data: [2.5, 3.5, 2.25, 3.25, 2.25, 1.25, .25, 2.25, 3.25]
+    }, {
+      name: 'Writing',
+      data: [3.5, 2.25, 1.25, 3.25, 2.25, 2.25, .25, 3, 4]
+    }, {
+      name: 'Testing',
+      data: [1.5, 1, 4.25, 3.25, 0.25, 0.25, .25, 0.5, 1]
+    }, {
+      name: 'Debugging',
+      data: [1.5, 1, 0.25, 0.55, 4.25, 4.75, 0, 0.5, 1]
+    }],
+
+    responsive: {
+      rules: [{
+        condition: {
+          maxWidth: 500
+        },
+        chartOptions: {
+          legend: {
+            layout: 'vertical',
+            align: 'center',
+            verticalAlign: 'bottom'
+          }
+        }
+      }]
+    }
+
+  });
+</script>
+</body>
+</html>

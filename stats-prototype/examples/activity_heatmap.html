@@ -1,0 +1,87 @@
+<html>
+<head>
+  <script src="../dist/jquery.js"></script>
+  <script src="../dist/highcharts.js"></script>
+  <script src="../dist/heatmap.js"></script>
+</head>
+
+<body>
+<div id="container" style="height: 400px; min-width: 310px; max-width: 1000px; margin: 0 auto"></div>
+
+
+<script type="text/javascript">
+
+  const numberOfWeeks = 20;
+  const numberOfDays = 7;
+  let series = [];
+  let categories = [];
+  for (let i = 0; i < numberOfWeeks; i++) {
+    for (let j = 0; j < numberOfDays; j++) {
+      let randomValue = Math.round((3 + Math.random() * 5) * 100)/100;
+      if (j === 0 || j === 6) {
+        randomValue = Math.round(Math.random() * 1 * 100)/100;
+      }
+      series.push([i, j, randomValue]);
+    }
+    categories.push('#'+(i+8));
+  }
+  console.log(series);
+
+  Highcharts.chart('container', {
+
+    chart: {
+      type: 'heatmap',
+      marginTop: 40,
+      marginBottom: 80,
+      plotBorderWidth: 1
+    },
+
+
+    title: {
+      text: 'Recent Activities'
+    },
+
+    xAxis: {
+      categories: categories
+    },
+
+    yAxis: {
+      categories: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+      title: null
+    },
+
+    colorAxis: {
+      min: 0,
+      minColor: '#FFFFFF',
+      maxColor: Highcharts.getOptions().colors[0]
+    },
+
+    legend: {
+      align: 'right',
+      layout: 'vertical',
+      margin: 20,
+      verticalAlign: 'top',
+      y: 25,
+      symbolHeight: 280
+    },
+
+    tooltip: {
+      formatter: function () {
+        return '<b>' + this.point.value + '</b> hours on <br><b>' + this.series.yAxis.categories[this.point.y] + '</b>';
+      }
+    },
+
+    series: [{
+      name: 'Sales per employee',
+      borderWidth: 1,
+      data: series,
+      dataLabels: {
+        enabled: false,
+        color: '#000000'
+      }
+    }]
+
+  });
+</script>
+</body>
+</html>
