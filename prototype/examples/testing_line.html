@@ -1,0 +1,79 @@
+<html>
+<head>
+  <script src="../dist/jquery.js"></script>
+  <script src="../dist/highcharts.js"></script>
+</head>
+
+<body>
+<div id="container" style="min-width: 310px; width: 700px; height: 400px; margin: 0 auto"></div>
+
+<script type="text/javascript">
+
+  function getRandomInt(min, max) {
+    return Math.floor(Math.random() * Math.floor(max - min) + min);
+  }
+
+  let categories = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+  let data = [];
+
+  for (let i = 0; i < categories.length; i++) {
+    let numbersOfTestWritten = getRandomInt(0, 25);
+    if (i === 6 || i === 7) {
+      numbersOfTestWritten = getRandomInt(0, 2);
+    }
+    data.push(numbersOfTestWritten);
+  }
+
+  Highcharts.chart('container', {
+
+    title: {
+      text: 'Test written last week'
+    },
+
+    xAxis: {
+      categories: categories,
+      tickmarkPlacement: 'on',
+      title: {
+        enabled: false
+      },
+    },
+    yAxis: {
+      title: {
+        text: 'Number of tests written'
+      },
+      labels: {
+        formatter: function () {
+          return this.value;
+        }
+      },
+    },
+    legend: {
+      layout: 'horizontal',
+      align: 'center',
+      verticalAlign: 'bottom'
+    },
+
+    series: [{
+      name: 'Testing',
+      data: data,
+    }],
+
+    responsive: {
+      rules: [{
+        condition: {
+          maxWidth: 500
+        },
+        chartOptions: {
+          legend: {
+            layout: 'vertical',
+            align: 'center',
+            verticalAlign: 'bottom'
+          }
+        }
+      }]
+    }
+
+  });
+</script>
+</body>
+</html>

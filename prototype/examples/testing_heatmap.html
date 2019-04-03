@@ -1,0 +1,95 @@
+<html>
+<head>
+  <script src="../dist/jquery.js"></script>
+  <script src="../dist/highcharts.js"></script>
+  <script src="../dist/heatmap.js"></script>
+</head>
+
+<body>
+<div id="container" style="height: 400px; min-width: 310px; max-width: 1000px; margin: 0 auto"></div>
+
+
+<script type="text/javascript">
+
+  function getRandomInt(min, max) {
+    return Math.floor(Math.random() * Math.floor(max - min) + min);
+  }
+
+  const numberOfWeeks = 20;
+  const numberOfDays = 7;
+
+  let series = [];
+  let categories = [];
+
+  for (let i = 0; i < numberOfWeeks; i++) {
+    for (let j = 0; j < numberOfDays; j++) {
+      let numberOfTestsWritten = getRandomInt(0, 20);
+      if (j === 0 || j === 1) {
+        if (Math.random() >= 0.16) {
+          numberOfTestsWritten = 0;
+        }
+      }
+      series.push([i, j, numberOfTestsWritten]);
+    }
+    categories.push('#'+(i+8));
+  }
+  console.log(series);
+
+  Highcharts.chart('container', {
+
+    chart: {
+      type: 'heatmap',
+      marginTop: 40,
+      marginBottom: 80,
+      plotBorderWidth: 1
+    },
+
+
+    title: {
+      text: 'Test written'
+    },
+
+    xAxis: {
+      categories: categories
+    },
+
+    yAxis: {
+      categories: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'].reverse(),
+      title: null
+    },
+
+    colorAxis: {
+      min: 0,
+      minColor: '#FFFFFF',
+      maxColor: Highcharts.getOptions().colors[0]
+    },
+
+    legend: {
+      align: 'right',
+      layout: 'vertical',
+      margin: 20,
+      verticalAlign: 'top',
+      y: 25,
+      symbolHeight: 280
+    },
+
+    tooltip: {
+      formatter: function () {
+        return '<b>' + this.point.value + '</b> tests written on <br><b>' + this.series.yAxis.categories[this.point.y] + '</b>';
+      }
+    },
+
+    series: [{
+      name: 'Sales per employee',
+      borderWidth: 1,
+      data: series,
+      dataLabels: {
+        enabled: false,
+        color: '#000000'
+      }
+    }]
+
+  });
+</script>
+</body>
+</html>
