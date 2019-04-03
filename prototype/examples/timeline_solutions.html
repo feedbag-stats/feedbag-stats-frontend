@@ -1,0 +1,79 @@
+<html>
+<head>
+  <script src="../dist/jquery.js"></script>
+  <script src="../dist/highcharts.js"></script>
+  <script src="../dist/xrange.js"></script>
+</head>
+
+<body>
+<div id="container" style="min-width: 310px; width: 700px; height: 400px; margin: 0 auto"></div>
+
+<script type="text/javascript">
+
+  function getRandomInt(min, max) {
+    return Math.floor(Math.random() * Math.floor(max - min) + min);
+  }
+
+  let categories = ['Solution 1', 'Solution 2', 'Solution 3', 'Solution 4'];
+  let duration = 60 * 60 * 24 * 1000;
+  let offset = 1554294603 * 1000;
+
+  let spanStart = 0;
+  let data = [];
+
+  let previousCategory = null;
+  let index = 0;
+  while (spanStart <= duration) {
+    if (spanStart >= 1554328665000-offset && spanStart < 1554366280000-offset) {
+      spanStart = 1554366280000-offset;
+    }
+    const randomDuration = getRandomInt(1000, 5000) * 1000;
+    const randomCategory = getRandomInt(0, categories.length);
+    if (randomCategory === previousCategory) {
+      data[index-1].x2 += randomDuration;
+    } else {
+      data[index] = {
+        x: spanStart + offset,
+        x2: spanStart + randomDuration + offset,
+        y: randomCategory,
+      };
+      index++;
+    }
+    previousCategory = randomCategory;
+    spanStart += randomDuration;
+  }
+
+  Highcharts.chart('container', {
+    chart: {
+      type: 'xrange'
+    },
+    title: {
+      text: 'Activies last 24 hours'
+    },
+    xAxis: {
+      type: 'datetime'
+    },
+    yAxis: {
+      title: {
+        text: ''
+      },
+      categories: categories,
+      reversed: true
+    },
+    series: [{
+      name: '',
+      // pointPadding: 0,
+      // groupPadding: 0,
+      borderColor: 'gray',
+      pointWidth: 20,
+      turboThreshold: 10000,
+      data: data,
+      dataLabels: {
+        enabled: false
+      }
+    }]
+
+  });
+</script>
+</body>
+</html>
