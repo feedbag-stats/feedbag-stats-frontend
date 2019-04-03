@@ -1,0 +1,50 @@
+<html>
+<head>
+  <script src="../dist/jquery.js"></script>
+  <script src="../dist/highcharts.js"></script>
+  <script src="../dist/xrange.js"></script>
+</head>
+
+<body>
+<div id="container" style="min-width: 310px; width: 700px; height: 400px; margin: 0 auto"></div>
+
+<script type="text/javascript">
+
+
+  Highcharts.chart('container', {
+    chart: {
+      type: 'column'
+    },
+    title: {
+      text: 'Time Spent on Reading Code'
+    },
+    xAxis: {
+      categories: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturnday', 'Sunday', 'Monday', 'Tuesday'],
+      crosshair: true
+    },
+    yAxis: {
+      min: 0,
+      max: 10,
+      title: {
+        text: 'hours'
+      }
+    },
+    tooltip: {
+      pointFormat: '{point.y} h',
+      shared: true,
+    },
+    plotOptions: {
+      column: {
+        pointPadding: 0.2,
+        borderWidth: 0
+      }
+    },
+    series: [{
+      name: 'Reading',
+      data: [4, 2.5, 1.25, 2.25, 1.75, 0.25, 0, 1.25, 2.75]
+    }]
+  });
+
+</script>
+</body>
+</html>
