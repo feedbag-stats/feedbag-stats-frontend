@@ -10,30 +10,30 @@ module.exports = {
   head: {
     title: pkg.name,
     meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: pkg.description }
+      {charset: 'utf-8'},
+      {name: 'viewport', content: 'width=device-width, initial-scale=1'},
+      {hid: 'description', name: 'description', content: pkg.description}
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'}
     ]
   },
 
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#fff' },
+  loading: {color: '#fff'},
 
   /*
   ** Global CSS
   */
-  css: [
-  ],
+  css: ["/assets/scss/app.scss"],
 
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
+    "~/plugins/vue-bootstrap.js",
   ],
 
   /*
@@ -41,18 +41,31 @@ module.exports = {
   */
   modules: [
     // Doc: https://bootstrap-vue.js.org/docs/
-    'bootstrap-vue/nuxt',
+    ['bootstrap-vue/nuxt', {css: false}],
   ],
 
-  /*
-  ** Build configuration
-  */
   build: {
+    //transpile: [/^vue2-google-maps($|\/)/],
     /*
-    ** You can extend webpack config here
-    */
-    extend(config, ctx) {
-      
-    }
-  }
+         ** Run ESLint on save
+         */
+    extend(config, {isDev, isClient}) {
+      if (false && isDev && isClient) {
+        config.module.rules.push({
+          enforce: "pre",
+          test: /\.(js|vue)$/,
+          loader: "eslint-loader",
+          exclude: /(node_modules)/,
+        });
+      }
+      if (!isClient) {
+      }
+    },
+    vendors: ["babel-polyfill", 'aframe'],
+  },
+  vue: {
+    loaders: {
+      scss: "style!css!sass",
+    },
+  },
 }

@@ -1,0 +1,99 @@
+// => https://github.com/twbs/bootstrap-sass/blob/master/assets/stylesheets/bootstrap/_variables.scss
+
+// Colors
+// =====================================
+
+$brand-primary: rgb(36, 31, 129) !default;
+$brand-primary-light: #1246D3 !default;
+$brand-success: #5cb85c !default;
+$brand-info: rgb(0, 143, 186) !default;
+$brand-warning: rgb(255, 196, 0) !default;
+$brand-danger: rgb(255, 18, 18) !default;
+$brand-gray: #707070;
+
+$theme-colors: (
+  "primary": $brand-primary,
+  "danger": $brand-danger,
+  "info": $brand-info,
+  "warning": $brand-warning
+);
+
+$white: #fff;
+$black: #000;
+
+$accent-bg: rgba($brand-primary, 0.03);
+
+// Fonts
+// =====================================
+$acuminPro: 'Acumin Pro';
+
+$font: $acuminPro, sans-serif;
+$font-family-base: $font !default;
+
+// fonts
+$font-root: 15px !default;
+$font-size-base: 1.25rem !default;
+$font-size-smaller: 1.25rem !default;
+
+$h1-font-size: 70px;
+$h2-font-size: 60px;
+$h3-font-size: 2.5rem;
+$headings-line-height: 1 !default;
+
+$text-color: $brand-primary;
+
+$headings-color: $brand-primary-light;
+$headings-font-weight: 100;
+
+@font-face {
+  font-family: $acuminPro;
+  src        : url('~assets/fonts/Acumin Pro Medium.otf');
+  font-style : normal;
+}
+
+@font-face {
+  font-family: $acuminPro;
+  src        : url('~assets/fonts/Acumin Pro Light.otf');
+  font-weight: 100;
+  font-style : normal;
+}
+
+@font-face {
+  font-family: $acuminPro;
+  src        : url('~assets/fonts/Acumin Pro Semibold.otf');
+  font-weight: 900;
+  font-style : normal;
+}
+
+// Form
+// =============================================================================
+$border-radius-base: 100px;
+
+// bootstrap vars
+// =============================================================================
+$enable-rounded: true;
+$component-active-bg: transparent;
+
+// Buttons
+$btn-border-radius-base: 1000px;
+
+$table-border-color: $brand-primary;
+$table-cell-padding: 30px;
+
+$nav-link-header-size: .8rem;
+
+$grid-columns: 12;
+$grid-gutter-width: 40px;
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1400px
+);
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 1080px,
+  xl: 1300px
+);
